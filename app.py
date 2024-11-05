@@ -51,6 +51,12 @@ from prompts import (
 from schema import ShortDialogue, MediumDialogue
 from utils import generate_podcast_audio, generate_script, parse_url
 
+import platform
+import asyncio
+
+if platform.system() == "Windows":
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+
 
 def generate_podcast(
     files: List[str],
