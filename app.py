@@ -230,4 +230,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch(show_api=UI_SHOW_API)
+    demo.launch(show_api=UI_SHOW_API, show_error=True)
