@@ -3,7 +3,7 @@
 // If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
 // You can also update the VARIANT arg in docker-compose.yml to pick a Python version: 3, 3.8, 3.7, 3.6 
 {
-	"name": "rag-system",
+	"name": "open-notebooklm",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/opt/motiong/code",
