@@ -45,8 +45,5 @@ USER ${DOCKER_USER}
 # 安装 Python 项目依赖
 RUN pip install --no-cache-dir -r ${DOCKER_CODE}/requirements.txt
 
-# 暴露服务端口（如需）
-EXPOSE 7860
-
 # 容器启动命令
 ENTRYPOINT [ "python", "app.py" ]

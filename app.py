@@ -221,7 +221,7 @@ demo = gr.Interface(
         ),
         gr.Markdown(label=UI_OUTPUTS["transcript"]["label"]),
     ],
-    allow_flagging=UI_ALLOW_FLAGGING,
+    flagging_mode=UI_ALLOW_FLAGGING,
     api_name=UI_API_NAME,
     theme=gr.themes.Ocean(),
     concurrency_limit=UI_CONCURRENCY_LIMIT,
@@ -230,4 +230,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch(show_api=UI_SHOW_API, show_error=True)
+    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860)
