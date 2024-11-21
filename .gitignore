@@ -163,3 +163,5 @@ cython_debug/
 
 gradio_cached_examples/
 .DS_Store
+/.vscode
+*.mp3

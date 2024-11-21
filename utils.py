@@ -20,6 +20,7 @@ import instructor
 import requests
 from bark import SAMPLE_RATE, generate_audio, preload_models
 from fireworks.client import Fireworks
+import openai
 from gradio_client import Client
 from scipy.io.wavfile import write as write_wav
 
@@ -29,6 +30,10 @@ from constants import (
     FIREWORKS_MODEL_ID,
     FIREWORKS_MAX_TOKENS,
     FIREWORKS_TEMPERATURE,
+    OPENAI_API_KEY,
+    OPENAI_BASE_URL,
+    OPENAI_MODEL_ID,
+    OPENAI_TEMPERATURE,
     MELO_API_NAME,
     MELO_TTS_SPACES_ID,
     MELO_RETRY_ATTEMPTS,
@@ -40,8 +45,10 @@ from constants import (
 from schema import ShortDialogue, MediumDialogue
 
 # Initialize Fireworks client, with Instructor patch
-fw_client = Fireworks(api_key=FIREWORKS_API_KEY)
-fw_client = instructor.from_fireworks(fw_client)
+# fw_client = Fireworks(api_key=FIREWORKS_API_KEY)
+# fw_client = instructor.from_fireworks(fw_client)
+openai_client = openai.Client(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL)
+openai_client = instructor.from_openai(openai_client)
 
 # Initialize Hugging Face client
 hf_client = Client(MELO_TTS_SPACES_ID)
@@ -69,14 +76,13 @@ def generate_script(
 
 def call_llm(system_prompt: str, text: str, dialogue_format: Any) -> Any:
     """Call the LLM with the given prompt and dialogue format."""
-    response = fw_client.chat.completions.create(
+    response = openai_client.chat.completions.create(
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": text},
         ],
-        model=FIREWORKS_MODEL_ID,
-        max_tokens=FIREWORKS_MAX_TOKENS,
-        temperature=FIREWORKS_TEMPERATURE,
+        model=OPENAI_MODEL_ID,
+        temperature=OPENAI_TEMPERATURE,
         response_model=dialogue_format,
     )
     return response

@@ -27,6 +27,12 @@ FIREWORKS_MAX_TOKENS = 16_384
 FIREWORKS_MODEL_ID = "accounts/fireworks/models/llama-v3p1-405b-instruct"
 FIREWORKS_TEMPERATURE = 0.1
 
+# OpenAI API-related constants
+OPENAI_API_KEY = "X9yQ4V2pJtM7vRg6Lk1WaN5f3ZcB8uT"
+OPENAI_BASE_URL = "http://10.4.32.15:5000/api/openai/ve/v1"
+OPENAI_MODEL_ID = "gpt-4o-mini"
+OPENAI_TEMPERATURE = 0.1
+
 # MeloTTS
 MELO_API_NAME = "/synthesize"
 MELO_TTS_SPACES_ID = "mrfakename/MeloTTS"
@@ -130,33 +136,33 @@ UI_API_NAME = "generate_podcast"
 UI_ALLOW_FLAGGING = "never"
 UI_CONCURRENCY_LIMIT = 3
 UI_EXAMPLES = [
-    [
-        [str(Path("examples/1310.4546v1.pdf"))],
-        "",
-        "Explain this paper to me like I'm 5 years old",
-        "Fun",
-        "Short (1-2 min)",
-        "English",
-        True,
-    ],
-    [
-        [],
-        "https://en.wikipedia.org/wiki/Hugging_Face",
-        "How did Hugging Face become so successful?",
-        "Fun",
-        "Short (1-2 min)",
-        "English",
-        False,
-    ],
-    [
-        [],
-        "https://simple.wikipedia.org/wiki/Taylor_Swift",
-        "Why is Taylor Swift so popular?",
-        "Fun",
-        "Short (1-2 min)",
-        "English",
-        False,
-    ],
+    # [
+    #     [str(Path("examples/1310.4546v1.pdf"))],
+    #     "",
+    #     "Explain this paper to me like I'm 5 years old",
+    #     "Fun",
+    #     "Short (1-2 min)",
+    #     "English",
+    #     True,
+    # ],
+    # [
+    #     [],
+    #     "https://en.wikipedia.org/wiki/Hugging_Face",
+    #     "How did Hugging Face become so successful?",
+    #     "Fun",
+    #     "Short (1-2 min)",
+    #     "English",
+    #     False,
+    # ],
+    # [
+    #     [],
+    #     "https://simple.wikipedia.org/wiki/Taylor_Swift",
+    #     "Why is Taylor Swift so popular?",
+    #     "Fun",
+    #     "Short (1-2 min)",
+    #     "English",
+    #     False,
+    # ],
 ]
 UI_CACHE_EXAMPLES = True
 UI_SHOW_API = True
