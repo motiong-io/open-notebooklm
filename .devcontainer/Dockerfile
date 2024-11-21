@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.12
 
 ENV PYTHONUNBUFFERED 1
 
@@ -21,7 +21,7 @@ RUN apt-get update && \
     apt-get install -y sudo && \
     apt-get install -y cargo && \
     pip install --upgrade pip && \
-    pip install poetry && \
+    pip install poetry==1.8.3 && \
     echo ${DOCKER_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${DOCKER_USER} && \
     chmod 0440 /etc/sudoers.d/${DOCKER_USER}
 
