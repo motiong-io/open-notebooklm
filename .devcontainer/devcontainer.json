@@ -7,7 +7,10 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/opt/motiong/code",
-	
+	"runArgs": [
+		"--gpus", "all",  // 启用所有可用的 GPU
+		"--runtime=nvidia" // 指定 NVIDIA 运行时
+	  ],
 	// Set *default* container specific settings.json values on container create.
 	"customizations": {
 		// Configure properties specific to VS Code.

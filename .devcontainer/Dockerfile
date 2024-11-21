@@ -20,6 +20,7 @@ RUN apt-get update && \
     apt-get install -y curl && \
     apt-get install -y sudo && \
     apt-get install -y cargo && \
+    apt-get install -y ffmpeg libsm6 libxext6 && \
     pip install --upgrade pip && \
     pip install poetry==1.8.3 && \
     echo ${DOCKER_USER} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${DOCKER_USER} && \
@@ -31,7 +32,6 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 # Install protoc
 RUN apt-get update && apt-get install -y protobuf-compiler
-
 
 
 # Setup env

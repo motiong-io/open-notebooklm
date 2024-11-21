@@ -1,0 +1,113 @@
+name: build-and-push-for-main
+
+on:
+  push:
+    branches:
+      - "dev"
+      - "main"
+
+env:
+  # ${{ x && 'ifTrue' || 'ifFalse' }}
+  NAMESPACE: ${{ github.ref_name == 'dev' && 'dev' || 'dev' }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # lets do the easy way first
+      # https://github.com/marketplace/actions/github-tag-bump
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        id: step-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          # dev branch start with v so we know it is a dev build
+          WITH_V: ${{ github.ref_name == 'dev' }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to ACR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ secrets.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: Extract metadata for Docker
+        id: dockermeta
+        uses: docker/metadata-action@v5
+        with: 
+          images: motiongcloud.azurecr.io/motiongcloud/${{ github.event.repository.name }}
+          tags: type=raw,value=${{ github.ref_name }}-${{ steps.step-tag.outputs.tag }}
+
+      - name: Save ssh private key file
+        run: echo "${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}" > deploy-ssh-key
+
+      - name: Build and push 
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          platforms: 'linux/amd64'
+          tags: ${{ steps.dockermeta.outputs.tags }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=min
+          ssh: |
+            thekey=deploy-ssh-key
+
+      - name: Checkout the helm-chart
+        uses: actions/checkout@v3
+        with:
+          repository: motiong-io/helm-chart
+          token: ${{ secrets.GH_TOKEN }}
+          ref: ${{ github.ref_name }}
+          path: helm
+      
+      # well this is the magic to cat a multiline file into env..
+      - name: Get the general config
+        run: |
+          ENV_GENERAL=$(cat helm/generic-configs/island-dev.yaml)
+          echo "ENV_GENERAL<<EOF" >> $GITHUB_ENV
+          echo "$ENV_GENERAL" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Get the env specific config
+        run: |
+          cd helm/outcast/${{ github.event.repository.name }}
+          ENV_SPECIFICS=$(cat island-dev-config.yaml)
+          echo "ENV_SPECIFICS<<EOF" >> $GITHUB_ENV
+          echo "$ENV_SPECIFICS" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      
+      - name: render values.yaml
+        run: |
+          cd helm/helm-charts/${{ github.event.repository.name }}
+          echo -e "${{ env.ENV_SPECIFICS }}\n${{ env.ENV_GENERAL }}\n${{ secrets.DEV_HELM_VALUES }}\nserviceVersion: ${{ github.ref_name }}-${{ steps.step-tag.outputs.tag }}\nserviceName: ${{ github.event.repository.name }}\nimage: ${{ steps.dockermeta.outputs.tags }}\nnamespace: $NAMESPACE" > values.yaml
+
+      - name: just before helm install, check the files
+        run: |
+          cd helm/helm-charts/${{ github.event.repository.name }}
+          ls -al
+          cat values.yaml
+      
+      - name: install helm
+        uses: azure/setup-helm@v4.2.0
+
+      # here the config also need if else to deploy on the right cluster
+      - name: get kubeconfig saved
+        run: |
+          mkdir ~/.kube
+          echo "${{ secrets.KUBE_CONFIG_ISLAND }}" | base64 --decode > ~/.kube/config
+          ls -al ~/.kube
+          echo "going to deploy to namespace: $NAMESPACE"
+
+      - name: helm deploy
+        run: helm upgrade --install ${{ github.event.repository.name }} helm/helm-charts/${{ github.event.repository.name }} --create-namespace --namespace $NAMESPACE --kube-insecure-skip-tls-verify -f helm/helm-charts/${{ github.event.repository.name }}/values.yaml

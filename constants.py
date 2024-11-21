@@ -22,7 +22,7 @@ ERROR_MESSAGE_READING_PDF = "Error reading the PDF file"
 ERROR_MESSAGE_TOO_LONG = "The total content is too long. Please ensure the combined text from PDFs and URL is fewer than {CHARACTER_LIMIT} characters."
 
 # Fireworks API-related constants
-FIREWORKS_API_KEY = os.getenv("FIREWORKS_API_KEY")
+FIREWORKS_API_KEY = "xxxxxxxxxx"#os.getenv("FIREWORKS_API_KEY")
 FIREWORKS_MAX_TOKENS = 16_384
 FIREWORKS_MODEL_ID = "accounts/fireworks/models/llama-v3p1-405b-instruct"
 FIREWORKS_TEMPERATURE = 0.1
@@ -80,11 +80,14 @@ JINA_RETRY_ATTEMPTS = 3
 JINA_RETRY_DELAY = 5  # in seconds
 
 # UI-related constants
+
+#- [Llama 3.1 405B 🦙](https://huggingface.co/meta-llama/Llama-3.1-405B) via [Fireworks AI 🎆](https://fireworks.ai/) and [Instructor 📐](https://github.com/instructor-ai/instructor) 
+
 UI_DESCRIPTION = """
 Generate Podcasts from PDFs using open-source AI.
 
 Built with:
-- [Llama 3.1 405B 🦙](https://huggingface.co/meta-llama/Llama-3.1-405B) via [Fireworks AI 🎆](https://fireworks.ai/) and [Instructor 📐](https://github.com/instructor-ai/instructor) 
+- [GPT-4o Mini 🤖](https://huggingface.co/openai/gpt-4o-mini) via [OpenAI 🌐](https://openai.com/)
 - [MeloTTS 🐚](https://huggingface.co/myshell-ai/MeloTTS-English)
 - [Bark 🐶](https://huggingface.co/suno/bark)
 - [Jina Reader 🔍](https://jina.ai/reader/)
