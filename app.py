@@ -40,6 +40,7 @@ from constants import (
     UI_INPUTS,
     UI_OUTPUTS,
     UI_SHOW_API,
+    CSS_STYLES,
 )
 from prompts import (
     LANGUAGE_MODIFIER,
@@ -178,6 +179,8 @@ def generate_podcast(
     logger.info(f"Generated {total_characters} characters of audio")
 
     return temporary_file.name, transcript
+    # return "",""
+
 
 
 demo = gr.Interface(
@@ -227,6 +230,7 @@ demo = gr.Interface(
     concurrency_limit=UI_CONCURRENCY_LIMIT,
     examples=UI_EXAMPLES,
     cache_examples=UI_CACHE_EXAMPLES,
+    css=CSS_STYLES,
 )
 
 if __name__ == "__main__":

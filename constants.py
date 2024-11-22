@@ -169,3 +169,9 @@ UI_EXAMPLES = [
 ]
 UI_CACHE_EXAMPLES = True
 UI_SHOW_API = True
+
+CSS_STYLES = """
+footer {
+    visibility: hidden;
+}
+"""
