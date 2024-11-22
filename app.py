@@ -40,6 +40,7 @@ from constants import (
     UI_INPUTS,
     UI_OUTPUTS,
     UI_SHOW_API,
+    CSS_STYLES,
 )
 from prompts import (
     LANGUAGE_MODIFIER,
@@ -178,6 +179,20 @@ def generate_podcast(
     logger.info(f"Generated {total_characters} characters of audio")
 
     return temporary_file.name, transcript
+    # return "",""
+
+
+# def fake_generate_podcast(
+#     files: List[str],
+#     url: Optional[str],
+#     question: Optional[str],
+#     tone: Optional[str],
+#     length: Optional[str],
+#     language: str,
+#     use_advanced_audio: bool,
+# ) -> Tuple[str, str]:
+#     """Generate the audio and transcript from the PDFs and/or URL."""
+#     return "",""
 
 
 demo = gr.Interface(
@@ -223,11 +238,13 @@ demo = gr.Interface(
     ],
     flagging_mode=UI_ALLOW_FLAGGING,
     api_name=UI_API_NAME,
+    # theme=gr.themes.Soft(),
     theme=gr.themes.Ocean(),
     concurrency_limit=UI_CONCURRENCY_LIMIT,
     examples=UI_EXAMPLES,
     cache_examples=UI_CACHE_EXAMPLES,
+    css=CSS_STYLES,
 )
 
 if __name__ == "__main__":
-    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860)
+    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860,favicon_path="faviconV2.png")

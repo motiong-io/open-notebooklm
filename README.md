@@ -26,6 +26,9 @@ Built with:
 - [Bark 🐶](https://huggingface.co/suno/bark)
 - [Jina Reader 🔍](https://jina.ai/reader/)
 
+## Screenshot
+![Open notebooklm](screenshot.png)
+
 ## Features
 
 - **Convert PDF to Podcast:** Upload a PDF and convert its content into a podcast dialogue.
