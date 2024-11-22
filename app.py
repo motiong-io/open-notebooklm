@@ -182,11 +182,23 @@ def generate_podcast(
     # return "",""
 
 
+def fake_generate_podcast(
+    files: List[str],
+    url: Optional[str],
+    question: Optional[str],
+    tone: Optional[str],
+    length: Optional[str],
+    language: str,
+    use_advanced_audio: bool,
+) -> Tuple[str, str]:
+    """Generate the audio and transcript from the PDFs and/or URL."""
+    return "",""
+
 
 demo = gr.Interface(
     title=APP_TITLE,
     description=UI_DESCRIPTION,
-    fn=generate_podcast,
+    fn=fake_generate_podcast,
     inputs=[
         gr.File(
             label=UI_INPUTS["file_upload"]["label"],  # Step 1: File upload
@@ -234,4 +246,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860)
+    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860,favicon_path="faviconV2.png")

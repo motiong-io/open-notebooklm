@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 
 # Key constants
-APP_TITLE = "Open NotebookLM 🎙️"
+APP_TITLE = "Motion G Toolkit Test"
 CHARACTER_LIMIT = 100_000
 
 # Gradio-related constants
@@ -83,21 +83,38 @@ JINA_RETRY_DELAY = 5  # in seconds
 
 #- [Llama 3.1 405B 🦙](https://huggingface.co/meta-llama/Llama-3.1-405B) via [Fireworks AI 🎆](https://fireworks.ai/) and [Instructor 📐](https://github.com/instructor-ai/instructor) 
 
+# UI_DESCRIPTION = """
+# Generate Podcasts from PDFs using open-source AI.
+
+# Built with:
+# - [GPT-4o Mini 🤖](https://huggingface.co/openai/gpt-4o-mini) via [OpenAI 🌐](https://openai.com/)
+# - [MeloTTS 🐚](https://huggingface.co/myshell-ai/MeloTTS-English)
+# - [Bark 🐶](https://huggingface.co/suno/bark)
+# - [Jina Reader 🔍](https://jina.ai/reader/)
+
+# **Note:** Only the text is processed (100k character limits).
+# """
 UI_DESCRIPTION = """
-Generate Podcasts from PDFs using open-source AI.
-
-Built with:
-- [GPT-4o Mini 🤖](https://huggingface.co/openai/gpt-4o-mini) via [OpenAI 🌐](https://openai.com/)
-- [MeloTTS 🐚](https://huggingface.co/myshell-ai/MeloTTS-English)
-- [Bark 🐶](https://huggingface.co/suno/bark)
-- [Jina Reader 🔍](https://jina.ai/reader/)
-
-**Note:** Only the text is processed (100k character limits).
+<div style="position: relative;padding-top: 20px; padding-bottom: 38px; color: white; background: linear-gradient(to right, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); border-radius: 10px;">
+    <h1 style="text-align: center; font-size: 3rem;">Open NotebookLM</h1>
+    <h2 style="text-align: center; font-size: 1.5rem;">Generate Your Podcasts from PDFs or URLs</h2>
+</div>
+<div style="opacity: 0.6;">
+<p style="text-align: center; font-size: 0.9rem; padding-top: 10px;">
+    Built with <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/" target="_blank" style="color: #FFD700;">GPT-4o Mini</a>, 
+    <a href="https://huggingface.co/myshell-ai/MeloTTS-English" target="_blank" style="color: #FFD700;">MeloTTS</a>, 
+    <a href="https://huggingface.co/suno/bark" target="_blank" style="color: #FFD700;">Bark</a>, 
+    and 
+    <a href="https://jina.ai/reader/" target="_blank" style="color: #FFD700;">Jina Reader</a>
+    </p>
+</div>
 """
+
+
 UI_AVAILABLE_LANGUAGES = list(set(SUNO_LANGUAGE_MAPPING.keys()))
 UI_INPUTS = {
     "file_upload": {
-        "label": "1. 📄 Upload your PDF(s)",
+        "label": "1. 📄 Upload your PDF(s) - Only the text is processed (100k character limits).",
         "file_types": [".pdf"],
         "file_count": "multiple",
     },
@@ -139,35 +156,35 @@ UI_API_NAME = "generate_podcast"
 UI_ALLOW_FLAGGING = "never"
 UI_CONCURRENCY_LIMIT = 3
 UI_EXAMPLES = [
-    # [
-    #     [str(Path("examples/1310.4546v1.pdf"))],
-    #     "",
-    #     "Explain this paper to me like I'm 5 years old",
-    #     "Fun",
-    #     "Short (1-2 min)",
-    #     "English",
-    #     True,
-    # ],
-    # [
-    #     [],
-    #     "https://en.wikipedia.org/wiki/Hugging_Face",
-    #     "How did Hugging Face become so successful?",
-    #     "Fun",
-    #     "Short (1-2 min)",
-    #     "English",
-    #     False,
-    # ],
-    # [
-    #     [],
-    #     "https://simple.wikipedia.org/wiki/Taylor_Swift",
-    #     "Why is Taylor Swift so popular?",
-    #     "Fun",
-    #     "Short (1-2 min)",
-    #     "English",
-    #     False,
-    # ],
+    [
+        [str(Path("examples/MotionG_bolg_1.pdf"))],
+        "",
+        "Explain this blog to me like I'm 5 years old",
+        "Fun",
+        "Short (1-2 min)",
+        "English",
+        True,
+    ],
+    [
+        [],
+        "https://www.motiong.ai/company/about-us",
+        "Introduce MotionG to me in a fun way",
+        "Fun",
+        "Short (1-2 min)",
+        "English",
+        False,
+    ],
+    [
+        [],
+        "https://www.motiong.ai/company/news-room/e3d5e3c8-59aa-41ce-98b1-fe7c44165049",
+        "Tell me recent news of MotionG to me in a broadcast style",
+        "Formal",
+        "Short (1-2 min)",
+        "English",
+        False,
+    ]
 ]
-UI_CACHE_EXAMPLES = True
+UI_CACHE_EXAMPLES = False
 UI_SHOW_API = True
 
 CSS_STYLES = """
