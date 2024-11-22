@@ -101,7 +101,9 @@ UI_DESCRIPTION = """
 </div>
 <div style="opacity: 0.6;">
 <p style="text-align: center; font-size: 0.9rem; padding-top: 10px;">
-    Built with <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/" target="_blank" style="color: #FFD700;">GPT-4o Mini</a>, 
+    <a href="https://github.com/motiong-io/open-notebooklm-test" target="_blank" style="color: #FFD700;">Project</a>
+    built with
+    <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/" target="_blank" style="color: #FFD700;">GPT-4o Mini</a>, 
     <a href="https://huggingface.co/myshell-ai/MeloTTS-English" target="_blank" style="color: #FFD700;">MeloTTS</a>, 
     <a href="https://huggingface.co/suno/bark" target="_blank" style="color: #FFD700;">Bark</a>, 
     and 
