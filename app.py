@@ -238,6 +238,7 @@ demo = gr.Interface(
     ],
     flagging_mode=UI_ALLOW_FLAGGING,
     api_name=UI_API_NAME,
+    # theme=gr.themes.Soft(),
     theme=gr.themes.Ocean(),
     concurrency_limit=UI_CONCURRENCY_LIMIT,
     examples=UI_EXAMPLES,

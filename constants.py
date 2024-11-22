@@ -95,20 +95,26 @@ JINA_RETRY_DELAY = 5  # in seconds
 # **Note:** Only the text is processed (100k character limits).
 # """
 UI_DESCRIPTION = """
-<div style="position: relative;padding-top: 20px; padding-bottom: 38px; color: white; background: linear-gradient(to right, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%); border-radius: 10px;">
-    <h1 style="text-align: center; font-size: 3rem;">Open NotebookLM</h1>
-    <h2 style="text-align: center; font-size: 1.5rem;">Generate Your Podcasts from PDFs or URLs</h2>
+<div style="position: relative; padding-top: 20px; padding-bottom: 38px; color: white; background: url('https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png') no-repeat center center; background-size: cover; border-radius: 10px;">
+    <h1 style="text-align: center; font-size: 3rem; color: white;">Open NotebookLM</h1>
+    <h2 style="text-align: center; font-size: 1.5rem; color: white;">Generate Your Podcasts from PDFs or URLs</h2>
+
 </div>
-<div style="opacity: 0.6;">
+
+<div style="opacity: 0.8;">
+
 <p style="text-align: center; font-size: 0.9rem; padding-top: 10px;">
-    <a href="https://github.com/motiong-io/open-notebooklm-test" target="_blank" style="color: #FFD700;">Project</a>
+    <a href="https://github.com/motiong-io/open-notebooklm-test" target="_blank" style="color: #12c2e9; display: inline-flex; align-items: center;">Project</a>
     built with
-    <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/" target="_blank" style="color: #FFD700;">GPT-4o Mini</a>, 
-    <a href="https://huggingface.co/myshell-ai/MeloTTS-English" target="_blank" style="color: #FFD700;">MeloTTS</a>, 
-    <a href="https://huggingface.co/suno/bark" target="_blank" style="color: #FFD700;">Bark</a>, 
+    <a href="https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/" target="_blank" style="color: #12c2e9;">GPT-4o Mini</a>, 
+    <a href="https://huggingface.co/myshell-ai/MeloTTS-English" target="_blank" style="color: #12c2e9;">MeloTTS</a>, 
+    <a href="https://huggingface.co/suno/bark" target="_blank" style="color: #12c2e9;">Bark</a>, 
     and 
-    <a href="https://jina.ai/reader/" target="_blank" style="color: #FFD700;">Jina Reader</a>
-    </p>
+    <a href="https://jina.ai/reader/" target="_blank" style="color: #12c2e9;">Jina Reader</a>
+    <br>
+    <strong>Note:</strong> Only the text will be processed, and the input must be less than 100,000 characters.
+</p>
+
 </div>
 """
 
@@ -116,7 +122,7 @@ UI_DESCRIPTION = """
 UI_AVAILABLE_LANGUAGES = list(set(SUNO_LANGUAGE_MAPPING.keys()))
 UI_INPUTS = {
     "file_upload": {
-        "label": "1. 📄 Upload your PDF(s) - Only the text is processed (100k character limits).",
+        "label": "1. 📄 Upload your PDF(s)",
         "file_types": [".pdf"],
         "file_count": "multiple",
     },
