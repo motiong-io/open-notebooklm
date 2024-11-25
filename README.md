@@ -27,7 +27,7 @@ Built with:
 - [Jina Reader 🔍](https://jina.ai/reader/)
 
 ## Screenshot
-![Open notebooklm](screenshot.png)
+![Open notebooklm](assets/img/screenshot.png)
 
 ## Features
 

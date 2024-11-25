@@ -1,4 +1,4 @@
-version: "3"
+version: "3.9"
 
 services:
   app:
@@ -14,7 +14,13 @@ services:
       - ~/etc/timezone:/opt/motiong/etc/timezone
       - ../.devcontainer/.zshrc:/opt/motiong/.zshrc
     command: ["tail -f /dev/null"]
-
+    deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                capabilities: [gpu] 
+    runtime: nvidia  
 
 
 

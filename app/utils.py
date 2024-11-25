@@ -25,7 +25,7 @@ from gradio_client import Client
 from scipy.io.wavfile import write as write_wav
 
 # Local imports
-from constants import (
+from app.constants import (
     FIREWORKS_API_KEY,
     FIREWORKS_MODEL_ID,
     FIREWORKS_MAX_TOKENS,
@@ -42,7 +42,7 @@ from constants import (
     JINA_RETRY_ATTEMPTS,
     JINA_RETRY_DELAY,
 )
-from schema import ShortDialogue, MediumDialogue
+from app.schema import ShortDialogue, MediumDialogue
 
 # Initialize Fireworks client, with Instructor patch
 # fw_client = Fireworks(api_key=FIREWORKS_API_KEY)

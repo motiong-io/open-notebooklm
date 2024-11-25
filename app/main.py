@@ -18,7 +18,7 @@ from pypdf import PdfReader
 from pydub import AudioSegment
 
 # Local imports
-from constants import (
+from app.constants import (
     APP_TITLE,
     CHARACTER_LIMIT,
     ERROR_MESSAGE_NOT_PDF,
@@ -42,15 +42,15 @@ from constants import (
     UI_SHOW_API,
     CSS_STYLES,
 )
-from prompts import (
+from app.prompts import (
     LANGUAGE_MODIFIER,
     LENGTH_MODIFIERS,
     QUESTION_MODIFIER,
     SYSTEM_PROMPT,
     TONE_MODIFIER,
 )
-from schema import ShortDialogue, MediumDialogue
-from utils import generate_podcast_audio, generate_script, parse_url
+from app.schema import ShortDialogue, MediumDialogue
+from app.utils import generate_podcast_audio, generate_script, parse_url
 
 import platform
 import asyncio
@@ -247,4 +247,4 @@ demo = gr.Interface(
 )
 
 if __name__ == "__main__":
-    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860,favicon_path="faviconV2.png")
+    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860,favicon_path="assets/img/faviconV2.png")

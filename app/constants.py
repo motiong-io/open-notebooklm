@@ -11,7 +11,7 @@ APP_TITLE = "Motion G Toolkit Test"
 CHARACTER_LIMIT = 100_000
 
 # Gradio-related constants
-GRADIO_CACHE_DIR = "./gradio_cached_examples/tmp/"
+GRADIO_CACHE_DIR = "app/gradio_cached_examples/tmp/"
 GRADIO_CLEAR_CACHE_OLDER_THAN = 1 * 24 * 60 * 60  # 1 day
 
 # Error messages-related constants
@@ -165,7 +165,7 @@ UI_ALLOW_FLAGGING = "never"
 UI_CONCURRENCY_LIMIT = 3
 UI_EXAMPLES = [
     [
-        [str(Path("examples/MotionG_bolg_1.pdf"))],
+        [str(Path("app/examples/MotionG_bolg_1.pdf"))],
         "",
         "Explain this blog to me like I'm 5 years old",
         "Fun",
