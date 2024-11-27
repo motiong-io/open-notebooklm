@@ -28,7 +28,7 @@ FIREWORKS_MODEL_ID = "accounts/fireworks/models/llama-v3p1-405b-instruct"
 FIREWORKS_TEMPERATURE = 0.1
 
 # OpenAI API-related constants
-OPENAI_API_KEY = "X9yQ4V2pJtM7vRg6Lk1WaN5f3ZcB8uT"
+OPENAI_API_KEY = ""
 OPENAI_BASE_URL = "http://10.4.32.15:5000/api/openai/ve/v1"
 OPENAI_MODEL_ID = "gpt-4o-mini"
 OPENAI_TEMPERATURE = 0.1
@@ -192,6 +192,17 @@ UI_EXAMPLES = [
         False,
     ]
 ]
+
+EMPTY_EXAMPLE_DATA = [
+    [],
+    "",
+    "",
+    "Formal",
+    "Short (1-2 min)",
+    "English",
+    True,
+]
+
 UI_CACHE_EXAMPLES = False
 UI_SHOW_API = True
 

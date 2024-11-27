@@ -116,7 +116,7 @@ def generate_podcast(
 
     for line in llm_output.dialogue:
         logger.info(f"Generating audio for {line.speaker}: {line.text}")
-        if line.speaker == "Host (Jane)":
+        if line.speaker == "Host (MotionG Host)":
             speaker = f"**Host**: {line.text}"
         else:
             speaker = f"**{llm_output.name_of_guest}**: {line.text}"
