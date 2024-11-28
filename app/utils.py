@@ -12,6 +12,7 @@ Functions:
 """
 
 # Standard library imports
+import os
 import time
 from typing import Any, Union
 
@@ -25,7 +26,7 @@ from gradio_client import Client
 from scipy.io.wavfile import write as write_wav
 
 # Local imports
-from constants import (
+from app.constants import (
     FIREWORKS_API_KEY,
     FIREWORKS_MODEL_ID,
     FIREWORKS_MAX_TOKENS,
@@ -42,7 +43,7 @@ from constants import (
     JINA_RETRY_ATTEMPTS,
     JINA_RETRY_DELAY,
 )
-from schema import ShortDialogue, MediumDialogue
+from app.schema import ShortDialogue, MediumDialogue
 
 # Initialize Fireworks client, with Instructor patch
 # fw_client = Fireworks(api_key=FIREWORKS_API_KEY)
@@ -121,9 +122,11 @@ def _use_suno_model(text: str, speaker: str, language: str, random_voice_number:
     guest_voice_num = str(random_voice_number + 1)
     audio_array = generate_audio(
         text,
-        history_prompt=f"v2/{language}_speaker_{host_voice_num if speaker == 'Host (Jane)' else guest_voice_num}",
+        history_prompt=f"v2/{language}_speaker_{host_voice_num if speaker == 'Host (MotionG Host)' else guest_voice_num}",
     )
-    file_path = f"audio_{language}_{speaker}.mp3"
+    dir = "app/output"
+    os.makedirs(dir, exist_ok=True)
+    file_path = f"app/output/audio_{language}_{speaker}.mp3"
     write_wav(file_path, SAMPLE_RATE, audio_array)
     return file_path
 

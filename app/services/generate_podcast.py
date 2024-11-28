@@ -1,7 +1,3 @@
-"""
-main.py
-"""
-
 # Standard library imports
 import glob
 import os
@@ -17,8 +13,20 @@ from loguru import logger
 from pypdf import PdfReader
 from pydub import AudioSegment
 
+
 # Local imports
-from constants import (
+from app.schema import ShortDialogue, MediumDialogue
+from app.utils import generate_podcast_audio, generate_script, parse_url
+
+from app.prompts import (
+    LANGUAGE_MODIFIER,
+    LENGTH_MODIFIERS,
+    QUESTION_MODIFIER,
+    SYSTEM_PROMPT,
+    TONE_MODIFIER,
+)
+
+from app.constants import (
     APP_TITLE,
     CHARACTER_LIMIT,
     ERROR_MESSAGE_NOT_PDF,
@@ -31,33 +39,7 @@ from constants import (
     MELO_TTS_LANGUAGE_MAPPING,
     NOT_SUPPORTED_IN_MELO_TTS,
     SUNO_LANGUAGE_MAPPING,
-    UI_ALLOW_FLAGGING,
-    UI_API_NAME,
-    UI_CACHE_EXAMPLES,
-    UI_CONCURRENCY_LIMIT,
-    UI_DESCRIPTION,
-    UI_EXAMPLES,
-    UI_INPUTS,
-    UI_OUTPUTS,
-    UI_SHOW_API,
-    CSS_STYLES,
 )
-from prompts import (
-    LANGUAGE_MODIFIER,
-    LENGTH_MODIFIERS,
-    QUESTION_MODIFIER,
-    SYSTEM_PROMPT,
-    TONE_MODIFIER,
-)
-from schema import ShortDialogue, MediumDialogue
-from utils import generate_podcast_audio, generate_script, parse_url
-
-import platform
-import asyncio
-
-if platform.system() == "Windows":
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-
 
 def generate_podcast(
     files: List[str],
@@ -134,7 +116,7 @@ def generate_podcast(
 
     for line in llm_output.dialogue:
         logger.info(f"Generating audio for {line.speaker}: {line.text}")
-        if line.speaker == "Host (Jane)":
+        if line.speaker == "Host (MotionG Host)":
             speaker = f"**Host**: {line.text}"
         else:
             speaker = f"**{llm_output.name_of_guest}**: {line.text}"
@@ -179,72 +161,16 @@ def generate_podcast(
     logger.info(f"Generated {total_characters} characters of audio")
 
     return temporary_file.name, transcript
-    # return "",""
 
 
-# def fake_generate_podcast(
-#     files: List[str],
-#     url: Optional[str],
-#     question: Optional[str],
-#     tone: Optional[str],
-#     length: Optional[str],
-#     language: str,
-#     use_advanced_audio: bool,
-# ) -> Tuple[str, str]:
-#     """Generate the audio and transcript from the PDFs and/or URL."""
-#     return "",""
-
-
-demo = gr.Interface(
-    title=APP_TITLE,
-    description=UI_DESCRIPTION,
-    fn=generate_podcast,
-    inputs=[
-        gr.File(
-            label=UI_INPUTS["file_upload"]["label"],  # Step 1: File upload
-            file_types=UI_INPUTS["file_upload"]["file_types"],
-            file_count=UI_INPUTS["file_upload"]["file_count"],
-        ),
-        gr.Textbox(
-            label=UI_INPUTS["url"]["label"],  # Step 2: URL
-            placeholder=UI_INPUTS["url"]["placeholder"],
-        ),
-        gr.Textbox(label=UI_INPUTS["question"]["label"]),  # Step 3: Question
-        gr.Dropdown(
-            label=UI_INPUTS["tone"]["label"],  # Step 4: Tone
-            choices=UI_INPUTS["tone"]["choices"],
-            value=UI_INPUTS["tone"]["value"],
-        ),
-        gr.Dropdown(
-            label=UI_INPUTS["length"]["label"],  # Step 5: Length
-            choices=UI_INPUTS["length"]["choices"],
-            value=UI_INPUTS["length"]["value"],
-        ),
-        gr.Dropdown(
-            choices=UI_INPUTS["language"]["choices"],  # Step 6: Language
-            value=UI_INPUTS["language"]["value"],
-            label=UI_INPUTS["language"]["label"],
-        ),
-        gr.Checkbox(
-            label=UI_INPUTS["advanced_audio"]["label"],
-            value=UI_INPUTS["advanced_audio"]["value"],
-        ),
-    ],
-    outputs=[
-        gr.Audio(
-            label=UI_OUTPUTS["audio"]["label"], format=UI_OUTPUTS["audio"]["format"]
-        ),
-        gr.Markdown(label=UI_OUTPUTS["transcript"]["label"]),
-    ],
-    flagging_mode=UI_ALLOW_FLAGGING,
-    api_name=UI_API_NAME,
-    # theme=gr.themes.Soft(),
-    theme=gr.themes.Ocean(),
-    concurrency_limit=UI_CONCURRENCY_LIMIT,
-    examples=UI_EXAMPLES,
-    cache_examples=UI_CACHE_EXAMPLES,
-    css=CSS_STYLES,
-)
-
-if __name__ == "__main__":
-    demo.launch(show_api=UI_SHOW_API, show_error=True,share=False,server_name="0.0.0.0",server_port=7860,favicon_path="faviconV2.png")
+def fake_generate_podcast(
+    files: List[str],
+    url: Optional[str],
+    question: Optional[str],
+    tone: Optional[str],
+    length: Optional[str],
+    language: str,
+    use_advanced_audio: bool,
+) -> Tuple[str, str]:
+    """Generate the audio and transcript from the PDFs and/or URL."""
+    return "",""

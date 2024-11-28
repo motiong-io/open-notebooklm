@@ -7,10 +7,7 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/opt/motiong/code",
-	"runArgs": [
-		"--gpus", "all",  // 启用所有可用的 GPU
-		"--runtime=nvidia" // 指定 NVIDIA 运行时
-	  ],
+
 	// Set *default* container specific settings.json values on container create.
 	"customizations": {
 		// Configure properties specific to VS Code.
@@ -49,7 +46,9 @@
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "poetry install --with dev",
-
+	"hostRequirements": {
+		"gpu":true
+	},
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "motiong"
 }

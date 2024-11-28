@@ -11,7 +11,7 @@ APP_TITLE = "Motion G Toolkit Test"
 CHARACTER_LIMIT = 100_000
 
 # Gradio-related constants
-GRADIO_CACHE_DIR = "./gradio_cached_examples/tmp/"
+GRADIO_CACHE_DIR = "app/gradio_cached_examples/tmp/"
 GRADIO_CLEAR_CACHE_OLDER_THAN = 1 * 24 * 60 * 60  # 1 day
 
 # Error messages-related constants
@@ -28,7 +28,7 @@ FIREWORKS_MODEL_ID = "accounts/fireworks/models/llama-v3p1-405b-instruct"
 FIREWORKS_TEMPERATURE = 0.1
 
 # OpenAI API-related constants
-OPENAI_API_KEY = "X9yQ4V2pJtM7vRg6Lk1WaN5f3ZcB8uT"
+OPENAI_API_KEY = ""
 OPENAI_BASE_URL = "http://10.4.32.15:5000/api/openai/ve/v1"
 OPENAI_MODEL_ID = "gpt-4o-mini"
 OPENAI_TEMPERATURE = 0.1
@@ -119,7 +119,7 @@ UI_DESCRIPTION = """
 """
 
 
-UI_AVAILABLE_LANGUAGES = list(set(SUNO_LANGUAGE_MAPPING.keys()))
+UI_AVAILABLE_LANGUAGES = list(SUNO_LANGUAGE_MAPPING.keys())
 UI_INPUTS = {
     "file_upload": {
         "label": "1. 📄 Upload your PDF(s)",
@@ -165,33 +165,48 @@ UI_ALLOW_FLAGGING = "never"
 UI_CONCURRENCY_LIMIT = 3
 UI_EXAMPLES = [
     [
-        [str(Path("examples/MotionG_bolg_1.pdf"))],
+        [str(Path("app/examples/MotionG_bolg_1.pdf"))],
         "",
-        "Explain this blog to me like I'm 5 years old",
+        "Explain this blog to me like in a fun way",
         "Fun",
         "Short (1-2 min)",
         "English",
         True,
+        2
     ],
     [
         [],
         "https://www.motiong.ai/company/about-us",
-        "Introduce MotionG to me in a fun way",
+        "Introduce MotionG to me in a fruitful way",
         "Fun",
         "Short (1-2 min)",
         "English",
-        False,
+        True,
+        1
     ],
     [
         [],
         "https://www.motiong.ai/company/news-room/e3d5e3c8-59aa-41ce-98b1-fe7c44165049",
-        "Tell me recent news of MotionG to me in a broadcast style",
+        "Tell me recent news of MotionG to me like I'm 5 years old",
         "Formal",
         "Short (1-2 min)",
         "English",
-        False,
+        True,
+        8
     ]
 ]
+
+EMPTY_EXAMPLE_DATA = [
+    [],
+    "",
+    "",
+    "Formal",
+    "Short (1-2 min)",
+    "English",
+    True,
+    0
+]
+
 UI_CACHE_EXAMPLES = False
 UI_SHOW_API = True
 
