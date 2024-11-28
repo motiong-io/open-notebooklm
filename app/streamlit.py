@@ -107,7 +107,7 @@ tone = st.sidebar.radio("Tone", ["Formal", "Fun"], key="tone", horizontal=True)
 length = st.sidebar.radio("Length", ["Short (1-2 min)", "Medium (3-5 min)"], key="length", horizontal=True)
 language = st.sidebar.selectbox("Language", UI_AVAILABLE_LANGUAGES, index=0)
 # use_advanced = st.sidebar.checkbox("Use advanced", value=True, key="use_advanced")
-use_advanced = "Yes"
+use_advanced = True
 random_voice_number = st.sidebar.select_slider("Random Voice Number",options=[i for i in range(9)],key="random_voice_number")
 
 ##### Main Page
