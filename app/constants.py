@@ -119,7 +119,7 @@ UI_DESCRIPTION = """
 """
 
 
-UI_AVAILABLE_LANGUAGES = list(set(SUNO_LANGUAGE_MAPPING.keys()))
+UI_AVAILABLE_LANGUAGES = list(SUNO_LANGUAGE_MAPPING.keys())
 UI_INPUTS = {
     "file_upload": {
         "label": "1. 📄 Upload your PDF(s)",
@@ -167,29 +167,32 @@ UI_EXAMPLES = [
     [
         [str(Path("app/examples/MotionG_bolg_1.pdf"))],
         "",
-        "Explain this blog to me like I'm 5 years old",
+        "Explain this blog to me like in a fun way",
         "Fun",
         "Short (1-2 min)",
         "English",
         True,
+        2
     ],
     [
         [],
         "https://www.motiong.ai/company/about-us",
-        "Introduce MotionG to me in a fun way",
+        "Introduce MotionG to me in a fruitful way",
         "Fun",
         "Short (1-2 min)",
         "English",
-        False,
+        True,
+        1
     ],
     [
         [],
         "https://www.motiong.ai/company/news-room/e3d5e3c8-59aa-41ce-98b1-fe7c44165049",
-        "Tell me recent news of MotionG to me in a broadcast style",
+        "Tell me recent news of MotionG to me like I'm 5 years old",
         "Formal",
         "Short (1-2 min)",
         "English",
-        False,
+        True,
+        8
     ]
 ]
 
@@ -201,6 +204,7 @@ EMPTY_EXAMPLE_DATA = [
     "Short (1-2 min)",
     "English",
     True,
+    0
 ]
 
 UI_CACHE_EXAMPLES = False

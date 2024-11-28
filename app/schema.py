@@ -10,9 +10,12 @@ from pydantic import BaseModel, Field
 class DialogueItem(BaseModel):
     """A single dialogue item."""
 
-    speaker: Literal["Host (MotionG Host)", "Guest"]
+    speaker: Literal["Host (MotionG Host)", "Guest","User"]
     text: str
     audio_file_path: Optional[str]
+
+    def to_brief_str(self):
+        return self.speaker +" : "+self.text
 
 
 class ShortDialogue(BaseModel):

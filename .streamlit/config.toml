@@ -1,0 +1,11 @@
+[server]
+headless = true
+port = 5731
+
+
+[theme]
+primaryColor="#FF4B4B"
+backgroundColor="#FFFFFF"
+secondaryBackgroundColor="#FFFFFF"
+textColor="#31333F"
+font="sans serif"
