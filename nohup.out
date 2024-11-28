@@ -10,3 +10,9 @@ Collecting usage statistics. To deactivate, set browser.gatherUsageStats to fals
 
 /opt/motiong/.cache/pypoetry/virtualenvs/app-nzVrL9NR-py3.12/lib/python3.12/site-packages/streamlit/watcher/local_sources_watcher.py:210: UserWarning: Torchaudio's I/O functions now support par-call bakcend dispatch. Importing backend implementation directly is no longer guaranteed to work. Please use `backend` keyword with load/save/info function, instead of calling the udnerlying implementation directly.
   lambda m: list(m.__path__._path),
+Deleted unused file: app/examples_cached/uploaded_file.pdf
+Deleted unused file: app/examples_cached/uploaded_file.pdf
+Deleted unused file: app/examples_cached/uploaded_file.pdf
+Deleted unused file: app/examples_cached/uploaded_file.pdf
+Deleted unused file: app/examples_cached/uploaded_file.pdf
+Deleted unused file: app/examples_cached/uploaded_file.pdf

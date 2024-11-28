@@ -6,7 +6,29 @@ st.set_page_config(page_title="Notebook LM", page_icon="➕", layout="centered",
 hide_decoration_bar_style = '''
     <style>
         header {visibility: hidden;}
-    </style>
+[data-testid='stFileUploader'] {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+[data-testid='stFileUploader'] section {
+    padding: 0;
+    display: flex;
+    justify-content: left; /* Centers the upload button */
+}
+
+[data-testid='stFileUploader'] section > input + div {
+    display: none; /* Hide the default file display */
+}
+
+[data-testid='stFileUploader'] section + div {
+    padding-top: 2px;
+    margin-top: 10px; /* Space between button and file display */
+    width: 100%; /* Ensures the file display takes the full width */
+}
+
 '''
 st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
 
