@@ -3,12 +3,12 @@ from app.constants import UI_AVAILABLE_LANGUAGES, UI_EXAMPLES,EMPTY_EXAMPLE_DATA
 import os
 
 st.set_page_config(page_title="Notebook LM", page_icon="➕", layout="centered", initial_sidebar_state="expanded")
-# hide_decoration_bar_style = '''
-#     <style>
-#         header {visibility: hidden;}
-#     </style>
-# '''
-# st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
+hide_decoration_bar_style = '''
+    <style>
+        header {visibility: hidden;}
+    </style>
+'''
+st.markdown(hide_decoration_bar_style, unsafe_allow_html=True)
 
 #### Sidebar
 # st.sidebar.title("NotebookLM Plus")
