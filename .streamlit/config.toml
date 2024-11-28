@@ -6,6 +6,6 @@ port = 5731
 [theme]
 primaryColor="#FF4B4B"
 backgroundColor="#FFFFFF"
-secondaryBackgroundColor="#FFFFFF"
+secondaryBackgroundColor="#F0F2F6"
 textColor="#31333F"
 font="sans serif"

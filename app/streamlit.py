@@ -12,7 +12,7 @@ st.set_page_config(page_title="Notebook LM", page_icon="➕", layout="centered",
 
 #### Sidebar
 # st.sidebar.title("NotebookLM Plus")
-st.sidebar.image("assets/img/companyLogo.jpg",use_container_width=True)
+st.sidebar.image("assets/img/companyLogo.png",use_container_width=True)
 
 def fill_example_data(example_data):
     st.session_state["file"] = example_data[0][0] if example_data[0] else None
