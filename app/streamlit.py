@@ -165,6 +165,7 @@ if st.sidebar.button("Start", key="start",use_container_width=True,disabled=Fals
     main_space.info("Starting the conversation...")
     # st.write(st.session_state)
 
+
     if st.session_state["source"] == "File":
         text = process_pdf(st.session_state["file"])
     elif st.session_state["source"] == "URL":
@@ -228,7 +229,7 @@ def show_history_dialogues(history_dialogues:List[DialogueItem]):
                 st.write(dialogue.text)
 
 
-input = st.chat_input("Type here to join after conversations start...", key="chat_input")
+input = st.chat_input("Type here to join after conversations start...", key="chat_input",disabled=False if st.session_state["got_transcripts"] else True)
 if input:
     with main_space.container():
         st.session_state["history_dialogues"].append(DialogueItem(speaker="User",text=input, audio_file_path=None))

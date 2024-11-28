@@ -1,0 +1,12 @@
+
+Collecting usage statistics. To deactivate, set browser.gatherUsageStats to false.
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:5731
+  Network URL: http://172.20.0.2:5731
+  External URL: http://165.21.97.50:5731
+
+/opt/motiong/.cache/pypoetry/virtualenvs/app-nzVrL9NR-py3.12/lib/python3.12/site-packages/streamlit/watcher/local_sources_watcher.py:210: UserWarning: Torchaudio's I/O functions now support par-call bakcend dispatch. Importing backend implementation directly is no longer guaranteed to work. Please use `backend` keyword with load/save/info function, instead of calling the udnerlying implementation directly.
+  lambda m: list(m.__path__._path),
