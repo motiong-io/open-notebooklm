@@ -11,14 +11,13 @@ header: mini
 short_description: Personalised Podcasts For All - Available in 13 Languages
 ---
 
-# Open NotebookLM
+# Open NotebookLM PLUS
 
 ## Overview
 
 This project is inspired by the NotebookLM tool, and implements it with open-source LLMs and text-to-speech models. This tool processes the content of a PDF, generates a natural dialogue suitable for an audio podcast, and outputs it as an MP3 file.
 
-Docker image `open-notebooklm-test:1.1`
-hosted at [`http://10.4.32.1:7860/`](http://10.4.32.1:7860/) for MotionG internal test use.
+hosted at [`http://10.4.32.1:5731/`](http://10.4.32.1:5731/) for MotionG internal test use.
 
 Built with:
 - [GPT-4o Mini 🤖](https://huggingface.co/openai/gpt-4o-mini) via [OpenAI 🌐](https://openai.com/)
@@ -27,7 +26,7 @@ Built with:
 - [Jina Reader 🔍](https://jina.ai/reader/)
 
 ## Screenshot
-![Open notebooklm](assets/img/screenshot.png)
+![image](https://github.com/user-attachments/assets/28c63db8-24a2-47b7-a8ad-2b50a2ab36c3)
 
 ## Features
 
