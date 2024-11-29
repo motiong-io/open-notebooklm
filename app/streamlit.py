@@ -114,6 +114,8 @@ random_voice_number = st.sidebar.select_slider("Random Voice Number",options=[i 
 from app.services.process_source import process_pdf,parse_url
 from app.services.generate_script import generate_init_script,generate_modified_script
 from app.services.generate_audios import generate_podcast_audio
+from app.services.transcript_audio import AudioTranscriptionService
+
 from app.schema import DialogueItem, MediumDialogue, ShortDialogue
 from app.constants import (
     CHARACTER_LIMIT,
@@ -122,6 +124,7 @@ from app.constants import (
     SUNO_LANGUAGE_MAPPING,
 )
 from typing import List
+import asyncio
 
 main_top_space = st.empty()
 main_space = st.empty()
@@ -233,7 +236,6 @@ if st.sidebar.button("Start", key="start",use_container_width=True,disabled=Fals
                             st.write(line.text)
 
 
-
 def show_history_dialogues(history_dialogues:List[DialogueItem]):
     for dialogue in history_dialogues:
         if dialogue.speaker == "Host (MotionG Host)":
@@ -251,7 +253,25 @@ def show_history_dialogues(history_dialogues:List[DialogueItem]):
                 st.write(dialogue.text)
 
 
-input = st.chat_input("Type here to join after conversations start...", key="chat_input",disabled=False if st.session_state["got_transcripts"] else True)
+
+async def podcast_gen(
+    text: str, 
+    speaker: str, 
+    language: str, 
+    use_advanced_audio: bool, 
+    random_voice_number: int, 
+    index: int = None
+) -> str:
+    audio_path = await asyncio.to_thread(
+        generate_podcast_audio, 
+        text, speaker, language, use_advanced_audio, random_voice_number, index
+    )
+    return audio_path
+
+
+
+
+input = st.chat_input("Type here to join after conversations start...", key="chat_input") #
 if input:
     with main_space.container():
         st.session_state["history_dialogues"].append(DialogueItem(speaker="User",text=input, audio_file_path=None))
