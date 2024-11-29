@@ -17,7 +17,17 @@ class AudioTranscriptionService:
         )
         output_transcription = transcription.text
         return output_transcription
-    
+
+    def get_audio_transcription_byte(self, audio_bytes: str) -> str:
+        # Motion G gateway not ready for openai audio transcription
+        output_transcription = None
+        # Transcribe the audio
+        transcription = self.openai_client.audio.transcriptions.create(
+            model=self.openai_audio_model,
+            file=audio_bytes,
+        )
+        output_transcription = transcription.text
+        return output_transcription
 
 # def test_audio_transcription_service():
 #     audio_transcription_service = AudioTranscriptionService()

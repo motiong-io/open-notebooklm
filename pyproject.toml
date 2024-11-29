@@ -10,6 +10,8 @@ python = "^3.12"
 pydantic-settings = "^2.5.2"
 openai = "^1.45.0"
 streamlit = "^1.40.2"
+streamlit-chat-widget = "^0.2.0"
+streamlit-float = "^0.3.5"
 
 
 [tool.poetry.group.dev.dependencies]

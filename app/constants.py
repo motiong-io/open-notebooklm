@@ -215,3 +215,71 @@ footer {
     visibility: hidden;
 }
 """
+
+
+ST_HIDE_HEADER_HTML = '''
+    <style>
+        header {visibility: hidden;}
+'''
+
+# [data-testid='stFileUploader'] {
+#     display: flex;
+#     flex-direction: column; /* Stack items vertically */
+#     align-items: center; /* Center items horizontally */
+#     width: 100%; /* Ensure the container takes full width */
+# }
+
+# [data-testid='stFileUploader'] section {
+#     padding: 0;
+#     display: flex;
+#     justify-content: left; /* Centers the upload button */
+# }
+
+# [data-testid='stFileUploader'] section > input + div {
+#     display: none; /* Hide the default file display */
+# }
+
+# [data-testid='stFileUploader'] section + div {
+#     padding-top: 2px;
+#     margin-top: 10px; /* Space between button and file display */
+#     width: 100%; /* Ensures the file display takes the full width */
+# }
+
+
+
+
+ST_MAINPAGE_TITLE_HTML = """
+<div style="display: flex; justify-content: center; align-items: center; height: 50vh; text-align: center; flex-direction: column;">
+    <h1 style="font-size: 4rem; font-weight: bold; color: #2b2b2b; font-family: Arial, sans-serif; margin-bottom: 20px;">
+        NotebookLM 
+        <span style=" display: inline-block; background-color: red; color: white; padding: 5px 15px; border-radius: 15px;
+            font-size: 1.5rem; font-weight: bold; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); position: relative; top: -20px;">
+            Plus
+        </span>
+    </h1>
+   <ul style="list-style-type: none; padding: 0; text-align: left; font-size: 1.25rem; color: #333; line-height: 1.8;">
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Upload a file or set a link:</strong> Make sure the reference content you upload is less than 10,000 characters.
+        </li>
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Click the "Start" button:</strong> Begin the blog conversation generation.
+        </li>
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Participate in the conversation:</strong> Ask questions and interact through the text input box below.
+        </li>
+    </ul>
+</div>
+
+"""
+
+ST_MAINPAGE_TITLE_TOP_HTML = """
+<div style="display: flex; justify-content: center; align-items: center; text-align: center; flex-direction: column;">
+    <h1 style="font-size: 4rem; font-weight: bold; color: #2b2b2b; font-family: Arial, sans-serif; margin-bottom: 20px;">
+        NotebookLM 
+        <span style=" display: inline-block; background-color: gold; color: white; padding: 5px 15px; border-radius: 15px;
+            font-size: 1.5rem; font-weight: bold; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); position: relative; top: -20px;">
+            Plus
+        </span>
+    </h1>
+</div>
+"""
