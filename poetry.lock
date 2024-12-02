@@ -1707,6 +1707,34 @@ watchdog = {version = ">=2.1.5,<7", markers = "platform_system != \"Darwin\""}
 snowflake = ["snowflake-connector-python (>=2.8.0)", "snowflake-snowpark-python[modin] (>=1.17.0)"]
 
 [[package]]
+name = "streamlit-chat-widget"
+version = "0.2.0"
+description = "A custom chat input widget for Streamlit"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "streamlit_chat_widget-0.2.0-py3-none-any.whl", hash = "sha256:c2908ce2c9c63370268dc989784dbecef721f8c33ab992f163bfe0d5ff017c7b"},
+    {file = "streamlit_chat_widget-0.2.0.tar.gz", hash = "sha256:7733cbf996cbf0df746f287100b50c3f9149024ace6f8ff6a8cb54d1f1baf56f"},
+]
+
+[package.dependencies]
+streamlit = ">=1.0"
+
+[[package]]
+name = "streamlit-float"
+version = "0.3.5"
+description = "Fix Streamlit containers relative to viewport instead of page"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "streamlit-float-0.3.5.tar.gz", hash = "sha256:a7cf12214e97bb99ed7cc25470af68974e5a51f65a956f31acf7b840d00cd153"},
+    {file = "streamlit_float-0.3.5-py3-none-any.whl", hash = "sha256:fa329f37b6e9280fa06519fa0ca89e1d5605b38240f49395700312e7a679e47e"},
+]
+
+[package.dependencies]
+streamlit = ">=0.63"
+
+[[package]]
 name = "tenacity"
 version = "9.0.0"
 description = "Retry code until it succeeds"
@@ -1857,4 +1885,4 @@ watchmedo = ["PyYAML (>=3.10)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "3e839c4f9473fc85de189cfa440eb2a340d44484ccac73d126982c37ec50cf9f"
+content-hash = "db3e912806d1990f19d19448c70916b9ab60ab483e09392cedb7ce58c04fa9af"

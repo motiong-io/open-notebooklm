@@ -215,3 +215,75 @@ footer {
     visibility: hidden;
 }
 """
+
+
+ST_HIDE_HEADER_HTML = '''
+    <style>
+        header {visibility: hidden;}
+'''
+
+# [data-testid='stFileUploader'] {
+#     display: flex;
+#     flex-direction: column; /* Stack items vertically */
+#     align-items: center; /* Center items horizontally */
+#     width: 100%; /* Ensure the container takes full width */
+# }
+
+# [data-testid='stFileUploader'] section {
+#     padding: 0;
+#     display: flex;
+#     justify-content: left; /* Centers the upload button */
+# }
+
+# [data-testid='stFileUploader'] section > input + div {
+#     display: none; /* Hide the default file display */
+# }
+
+# [data-testid='stFileUploader'] section + div {
+#     padding-top: 2px;
+#     margin-top: 10px; /* Space between button and file display */
+#     width: 100%; /* Ensures the file display takes the full width */
+# }
+
+
+
+
+ST_MAINPAGE_TITLE_HTML = """
+<div style="display: flex; justify-content: center; align-items: center; height: 50vh; text-align: center; flex-direction: column;">
+    <h1 style="font-size: 4rem; font-weight: bold; color: #2b2b2b; font-family: Arial, sans-serif; margin-bottom: 20px;">
+        NotebookLM 
+        <span style=" display: inline-block; background-color: red; color: white; padding: 5px 15px; border-radius: 15px;
+            font-size: 1.5rem; font-weight: bold; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); position: relative; top: -20px;">
+            Plus
+        </span>
+    </h1>
+   <ul style="list-style-type: none; padding: 0; text-align: left; font-size: 1.25rem; color: #333; line-height: 1.8;">
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Upload a file or set a link:</strong> Make sure the reference content you upload is less than 10,000 characters.
+        </li>
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Click the "Start" button:</strong> Begin the blog conversation generation.
+        </li>
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Participate in the conversation:</strong> Ask questions and interact through the text input box below.
+        </li>
+        <li style="margin-bottom: 15px; padding: 10px 20px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+            <strong>Note:</strong> Allowing the browser to use the microphone is required for voice input.<br> HTTP solutions for <a href="https://stackoverflow.com/questions/52759992/how-to-access-camera-and-microphone-in-chrome-without-https">Chorme</a>
+            and <a href="https://blog.csdn.net/baidu_31788709/article/details/125652048#:~:text=Microsoft%20Edge%E7%BD%91%E9%A1%B5%E8%B0%83%E7%94%A8%E6%91%84%E5%83%8F%E5%A4%B4%E5%A4%B1%E8%B4%A5%EF%BC%88%E8%AE%BE%E7%BD%AE%E6%9D%83%E9%99%90%E5%A4%84%E6%8C%89%E9%92%AE%E4%B8%BA%E7%81%B0%E8%89%B2%E4%B8%8D%E5%8F%AF%E4%BF%AE%E6%94%B9%EF%BC%89%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%201%20%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE%20edge%3A%2F%2Fflags%EF%BC%8C%E8%BF%9B%E5%85%A5%E9%85%8D%E7%BD%AE%E7%95%8C%E9%9D%A2%E3%80%82%202%20%E6%90%9C%E7%B4%A2%E5%85%B3%E9%94%AE%E5%AD%97%20Insecure.,http%3A%2F%2Ftest.com%E3%80%82%206%20%E5%9C%A8%E7%A9%BA%E7%99%BD%E5%A4%84%E7%82%B9%E5%87%BB%E4%B8%80%E4%B8%8B%EF%BC%8C%E5%B0%B1%E4%BC%9A%E6%8F%90%E7%A4%BA%E6%98%AF%E5%90%A6%E7%94%9F%E6%95%88%EF%BC%8C%E7%94%9F%E6%95%88%E9%9C%80%E8%A6%81%E9%87%8D%E5%90%AF%E4%B9%8B%E7%B1%BB%E7%9A%84%E6%8F%90%E7%A4%BA%E3%80%82%207%20%E8%BF%99%E6%97%B6%E5%80%99%E5%86%8D%E5%8E%BB%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%B3%E4%B8%8A%E8%A7%92%E2%80%9C%E2%80%A6%E2%80%9D%EF%BC%8C%E9%80%89%E6%8B%A9%20%E8%AE%BE%E7%BD%AE%20-%3E%20Cookie%E5%92%8C%E7%BD%91%E7%AB%99%E6%9D%83%E9%99%90%EF%BC%8C%E7%82%B9%E5%BC%80%E7%AB%99%E7%82%B9%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E8%AF%A5%E7%AB%99%E7%82%B9%E7%9A%84%E6%9D%83%E9%99%90%E5%8F%AF%E9%80%89%E4%BA%86%EF%BC%8C%E4%B9%8B%E5%89%8D%E6%91%84%E5%83%8F%E5%A4%B4%E7%AD%89%E6%8C%89%E9%92%AE%E9%83%BD%E6%98%AF%E7%81%B0%E8%89%B2%E7%9A%84%E3%80%82">Edge</a>.
+        </li>
+    </ul>
+</div>
+
+"""
+
+ST_MAINPAGE_TITLE_TOP_HTML = """
+<div style="display: flex; justify-content: center; align-items: center; text-align: center; flex-direction: column;">
+    <h1 style="font-size: 4rem; font-weight: bold; color: #2b2b2b; font-family: Arial, sans-serif; margin-bottom: 20px;">
+        NotebookLM 
+        <span style=" display: inline-block; background-color: gold; color: white; padding: 5px 15px; border-radius: 15px;
+            font-size: 1.5rem; font-weight: bold; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); position: relative; top: -20px;">
+            Plus
+        </span>
+    </h1>
+</div>
+"""

@@ -1,16 +1,15 @@
 """
 
-Publish Version on 5731
-streamlit run app/streamlit.py
+TEST Version on 5733
+streamlit run app/app_run_4.py --server.port 5733
 
 """
-
 
 import streamlit as st
 from app.constants import UI_AVAILABLE_LANGUAGES, UI_EXAMPLES,EMPTY_EXAMPLE_DATA,ST_HIDE_HEADER_HTML
 import os
 
-st.set_page_config(page_title="Notebook LM Plus", page_icon="assets/img/faviconV2.png", layout="centered", initial_sidebar_state="expanded")
+st.set_page_config(page_title="Notebook LM (test)", page_icon="assets/img/faviconV2.png", layout="centered", initial_sidebar_state="expanded")
 st.markdown(ST_HIDE_HEADER_HTML, unsafe_allow_html=True)
 
 #### Sidebar

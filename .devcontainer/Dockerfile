@@ -69,6 +69,11 @@ RUN apt-get update && \
     pip install poetry==1.8.3 && \
     poetry config virtualenvs.create false
 
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+
 # Install zsh, omz, plugins
 RUN apt-get install -y zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
