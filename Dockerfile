@@ -79,14 +79,15 @@ RUN mkdir ${DOCKER_HOME}/.ssh && \
     ssh-keyscan bitbucket.org >> ${DOCKER_HOME}/.ssh/known_hosts && \
     echo "alias docker='sudo docker'" > ${DOCKER_HOME}/.bashrc
 
-# 复制项目文件到容器中
-COPY --chown=${DOCKER_USER} . ${DOCKER_CODE}
-
-# 切换到非 root 用户
-USER ${DOCKER_USER}
-
-# 安装 Python 项目依赖
+# Copy only requirements first for cache efficiency
+COPY requirements.txt ${DOCKER_CODE}/requirements.txt
 RUN pip install --no-cache-dir -r ${DOCKER_CODE}/requirements.txt
 
-# 容器启动命令
-ENTRYPOINT [ "streamlit","run" ,"app/streamlit.py", "-c" ]
+# Copy the rest of the project files
+COPY --chown=${DOCKER_USER} . ${DOCKER_CODE}
+
+# Switch to non-root user
+USER ${DOCKER_USER}
+
+# Define entry point
+ENTRYPOINT ["streamlit", "run", "app/streamlit.py", "-c"]

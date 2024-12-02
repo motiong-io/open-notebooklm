@@ -34,3 +34,7 @@ def init_session_state():
         st.session_state["got_transcripts"] = False
     if "text" not in st.session_state:
         st.session_state["text"] = ""
+    if "disable_user_input" not in st.session_state:
+        st.session_state["disable_user_input"] = True
+    if "history_dialogues" not in st.session_state:
+        st.session_state["history_dialogues"] = []

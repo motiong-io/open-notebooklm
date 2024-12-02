@@ -1,9 +1,6 @@
 [server]
 headless = true
 port = 5731
-sslCertFile = '.streamlit/ssl/certchain.pem'
-sslKeyFile = '.streamlit/ssl/private.key'
-
 
 
 [theme]

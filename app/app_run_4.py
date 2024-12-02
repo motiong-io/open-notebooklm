@@ -72,6 +72,7 @@ language = st.sidebar.selectbox("Language", UI_AVAILABLE_LANGUAGES, index=0)
 # use_advanced = st.sidebar.checkbox("Use advanced", value=True, key="use_advanced")
 use_advanced = True
 random_voice_number = st.sidebar.select_slider("Random Voice Number",options=[i for i in range(9)],key="random_voice_number")
+input_method = st.sidebar.radio("Input Method",["Text","Audio"],index=0,key="input_method",horizontal=True)
 
 ##### Main Page
 from app.services.process_source import process_pdf,parse_url
@@ -205,58 +206,52 @@ def show_history_dialogues(history_dialogues:List[DialogueItem]):
 ### Input Widget
 
 from streamlit_float import * 
-from streamlit_chat_widget import chat_input_widget
 float_init()
 footer_container = st.container()
 with footer_container:
-    user_input = chat_input_widget()
+    if input_method == "Text":
+        user_input = st.chat_input("Type your message")
+    else:
+        audio_input = st.audio_input("Record your voice",label_visibility="collapsed",)
+        user_input = AudioTranscriptionService().get_audio_transcription_byte(audio_input)
+
 footer_container.float(
-    "display:flex; align-items:center;justify-content:center; overflow:hidden visible;flex-direction:column; position:fixed;bottom:15px;"
+    "display:flex;justify-content:center; overflow:hidden visible; position:fixed;bottom:15px;"
 )
 
-
 if user_input:
-    if "text" in user_input:
-        user_text =user_input["text"]
-        input = user_text
-    elif "audioFile" in user_input:
-        audio_bytes = bytes(user_input["audioFile"])
-        input = AudioTranscriptionService().get_audio_transcription_byte(audio_bytes)
+    with main_space.container():
+        st.session_state["history_dialogues"].append(DialogueItem(speaker="User",text=user_input, audio_file_path=None))
+        main_top_space = st.container(height=150,border=False)
+        main_top_space.markdown(ST_MAINPAGE_TITLE_TOP_HTML, unsafe_allow_html=True)
 
-    if input:
-        main_space.empty()
-        with main_space.container():
-            st.session_state["history_dialogues"].append(DialogueItem(speaker="User",text=input, audio_file_path=None))
-            main_top_space = st.container(height=150,border=False)
-            main_top_space.markdown(ST_MAINPAGE_TITLE_TOP_HTML, unsafe_allow_html=True)
+        show_history_dialogues(st.session_state["history_dialogues"])
+        with st.spinner("Generating your response..."):
+            new_script = generate_modified_script(user_input, tone, length, language, st.session_state["text"], st.session_state["history_dialogues"])
+        # st.write(new_script)
+        for line in new_script.dialogue:
+            with st.spinner(f"Generating audio for {line.speaker}..."):        
+                language_for_tts = SUNO_LANGUAGE_MAPPING[language]
+                if not use_advanced:
+                    language_for_tts = MELO_TTS_LANGUAGE_MAPPING[language_for_tts]
 
-            show_history_dialogues(st.session_state["history_dialogues"])
+                audio_file_path = generate_podcast_audio(
+                line.text, line.speaker, language_for_tts, use_advanced, random_voice_number,len(st.session_state["history_dialogues"])
+                )
 
-            new_script = generate_modified_script(input, tone, length, language, st.session_state["text"], st.session_state["history_dialogues"])
-            # st.write(new_script)
-            for line in new_script.dialogue:
-                with st.spinner(f"Generating audio for {line.speaker}..."):        
-                    language_for_tts = SUNO_LANGUAGE_MAPPING[language]
-                    if not use_advanced:
-                        language_for_tts = MELO_TTS_LANGUAGE_MAPPING[language_for_tts]
+                st.session_state["history_dialogues"].append(DialogueItem(speaker=line.speaker,text=line.text,audio_file_path=audio_file_path))
 
-                    audio_file_path = generate_podcast_audio(
-                    line.text, line.speaker, language_for_tts, use_advanced, random_voice_number,len(st.session_state["history_dialogues"])
-                    )
-
-                    st.session_state["history_dialogues"].append(DialogueItem(speaker=line.speaker,text=line.text,audio_file_path=audio_file_path))
-
-                    if line.speaker == "Host (MotionG Host)":
-                        with st.chat_message("Host",avatar='🎤'):
-                            st.audio(audio_file_path, autoplay=True)
-                            st.write(line.text)
-                    elif line.speaker == "Guest":
-                        with st.chat_message("Guest",avatar='🪑'):
-                            st.audio(audio_file_path, autoplay=True)
-                            st.write(line.text)
-                    else:
-                        with st.chat_message("User",avatar='🙋‍♂️'):
-                            st.write(line.text)
+                if line.speaker == "Host (MotionG Host)":
+                    with st.chat_message("Host",avatar='🎤'):
+                        st.audio(audio_file_path, autoplay=True)
+                        st.write(line.text)
+                elif line.speaker == "Guest":
+                    with st.chat_message("Guest",avatar='🪑'):
+                        st.audio(audio_file_path, autoplay=True)
+                        st.write(line.text)
+                else:
+                    with st.chat_message("User",avatar='🙋‍♂️'):
+                        st.write(line.text)
 
 
 clean_unused_files()
