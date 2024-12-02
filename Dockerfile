@@ -93,5 +93,7 @@ COPY --chown=${DOCKER_USER} . ${DOCKER_CODE}
 # Switch to non-root user
 USER ${DOCKER_USER}
 
+ENV PYTHONPATH="${DOCKER_CODE}"
+
 # Define entry point
 ENTRYPOINT ["streamlit", "run", "app/streamlit.py"]
