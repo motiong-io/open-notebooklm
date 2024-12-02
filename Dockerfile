@@ -83,6 +83,10 @@ RUN mkdir ${DOCKER_HOME}/.ssh && \
 COPY requirements.txt ${DOCKER_CODE}/requirements.txt
 RUN pip install --no-cache-dir -r ${DOCKER_CODE}/requirements.txt
 
+# Add Poetry dependencies installation
+COPY pyproject.toml poetry.lock ${DOCKER_CODE}/
+RUN poetry install --no-dev --no-interaction
+
 # Copy the rest of the project files
 COPY --chown=${DOCKER_USER} . ${DOCKER_CODE}
 
