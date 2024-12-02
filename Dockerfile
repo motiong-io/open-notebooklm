@@ -94,4 +94,4 @@ COPY --chown=${DOCKER_USER} . ${DOCKER_CODE}
 USER ${DOCKER_USER}
 
 # Define entry point
-ENTRYPOINT ["streamlit", "run", "app/streamlit.py", "-c"]
+ENTRYPOINT ["streamlit", "run", "app/streamlit.py"]
